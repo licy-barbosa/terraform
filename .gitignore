@@ -1,0 +1,3 @@
+debian/terraform.tfvars
+debian/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0/windows_amd64/terraform-provider-aws_v6.11.0_x5.exe
+debian/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0/windows_amd64/LICENSE.txt
