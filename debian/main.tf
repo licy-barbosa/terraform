@@ -16,7 +16,7 @@ provider "aws" {
 # 1. Subir la clave pública a AWS
 resource "aws_key_pair" "default" {
   key_name   = "terraform-key"
-  public_key = file("~/.ssh/terraform-key.pub")
+  public_key = file("D:/Elizabeth/DevOps/Terraform/debian/.ssh/debian-test.pub")
 }
 
 # 2. Recurso (instancia EC2)
@@ -26,10 +26,9 @@ resource "aws_instance" "example" {
   instance_type = "t3.micro"
   key_name      = aws_key_pair.default.key_name  # <<--- Aquí se asocia la clave pública
 
-
   #instalar Docker en la instancia
   user_data = <<-EOF
-              #!/bin/bash
+              #!/bin/bashcls
               set -e
 
               # Actualizar sistema
