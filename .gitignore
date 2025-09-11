@@ -5,3 +5,6 @@ debian/.ssh/debian-test.pem
 debian/.ssh/debian-test.pub
 debian/.ssh/debian-test
 debian/steps.txt
+*.tfstate
+*.tfstate.backup
+*.tfvars
