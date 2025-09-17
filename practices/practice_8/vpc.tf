@@ -65,7 +65,7 @@ resource "aws_security_group" "sg_public_instance" {
   vpc_id      = aws_vpc.vpc_ohio.id
   provider    = aws.ohio
 
-dynamic "ingress"{
+  dynamic "ingress" {
     for_each = var.ingress_ports_list
     content {
       description = "Allow inbound traffic on port ${ingress.value}"
@@ -74,9 +74,9 @@ dynamic "ingress"{
       protocol    = "tcp"
       cidr_blocks = [var.sg_ingress_cidr]
     }
-}
+  }
 
-#22 es el puesto para administración remota (SSH)
+  #22 es el puesto para administración remota (SSH)
   # ingress {
   #   description = "SSH over internet"
   #   from_port   = 22
@@ -103,9 +103,26 @@ dynamic "ingress"{
 module "mybucket" {
   source      = "./modules/s3"
   bucket_name = "mybucket12451425jgg" #nombre unico para el bucket S3
-  providers   = { aws = aws.ohio } #usando el proveedor ohio para crear el bucket S3
+  providers   = { aws = aws.ohio }    #usando el proveedor ohio para crear el bucket S3
 }
 
 output "mybucket" {
   value = module.mybucket.s3_bucket_arn
 }
+
+# Descomentar el siguiente bloque para crear un bucket S3 para almacenar el estado de Terraform
+# module "terraform_state_backend" {
+#   source = "cloudposse/tfstate-backend/aws"
+#   # Cloud Posse recommends pinning every module to a specific version
+#   version     = "1.7.0"
+#   namespace  = "example-licy"
+#   stage      = "prod"
+#   name       = "terraform"
+#   environment = "us-east-2"
+#   attributes = ["state"]
+  
+#   providers   = { aws = aws.ohio }    # usando el proveedor ohio para crear el bucket S3
+#   terraform_backend_config_file_path = "."
+#   terraform_backend_config_file_name = "backend.tf"
+#   force_destroy                      = false
+# }

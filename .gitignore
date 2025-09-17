@@ -12,3 +12,5 @@ debian/steps.txt
 *.exe
 *LICENSE.txt
 *.pem
+.terraform/
+practices/practice_8/.terraform/modules/modules.json
