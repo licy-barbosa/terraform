@@ -1,10 +1,12 @@
 resource "aws_instance" "public_instance" {
-  ami           = "ami-0634f3c109dcdc659"
-  instance_type = "t3.micro"
-  subnet_id     = aws_subnet.public_subnet.id
-  provider      = aws.ohio
-  key_name      = data.aws_key_pair.key_practice.key_name
+  ami                    = var.ec2_specs.ami
+  instance_type          = var.ec2_specs.instance_type
+  subnet_id              = aws_subnet.public_subnet.id
+  provider               = aws.ohio
+  key_name               = data.aws_key_pair.key_practice.key_name
+  vpc_security_group_ids = [aws_security_group.sg_public_instance.id]
 
+  user_data = file("scripts/userdata.sh")
 
   lifecycle {
     # v 34

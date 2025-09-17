@@ -39,3 +39,13 @@ variable "ec2_specs" {
   description = "Especificaciones de la instancia EC2"
   type        = map(string)
 }
+
+variable "enable_monitoring" {
+  description = "Habilitar despliegue de  monitoreo detallado"
+  type        = bool
+}
+
+variable "ingress_ports_list" {
+  description = "Lista de puertos para reglas de ingreso"
+  type        = list(number)
+}

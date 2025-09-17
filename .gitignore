@@ -11,3 +11,4 @@ debian/steps.txt
 *.hcl
 *.exe
 *LICENSE.txt
+*.pem
